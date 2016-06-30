@@ -70,7 +70,7 @@ setInterval(function() {
 ```
 
 #### How it works
-A client creates an [exclusive][6], randomly named response queue (something similar to `seneca.res.x42jK0l`) and starts consuming from it - much like a listener would do. On every `act`, the client publishes the message to the  `seneca.topic` exchange using a routing key built from the _pin that matches the act pattern_. In the simple example above, the _pattern_ is `role:create` which equals the only declared pin. With that, the routing key `role.create` is inferred. An AMQP `replyTo` header is set to the name of the random queue, in an [RPC-schema][7] fashion.
+A client creates an exclusive, randomly named response queue (something similar to `seneca.res.x42jK0l`) and starts consuming from it - much like a listener would do. On every `act`, the client publishes the message to the  `seneca.topic` topic built from the _pin that matches the act pattern_. In the simple example above, the _pattern_ is `role:create` which equals the only declared pin. With that, the routing key `role.create` is inferred. An AMQP `replyTo` header is set to the name of the random queue, in an [RPC-schema][7] fashion.
 
 > Manual queue naming on a client (using the `name` parameter as seen in the listener configuration) is not supported. Client queues are deleted once the client disconnect and re-created each time.
 
@@ -78,7 +78,7 @@ As you can see, pins play an important role on routing messages on the broker, s
 
 In the example, the following things are declared:
 
-- A **topic** exchange named `seneca.topic`.
+- A **topic** named `role.create`.
 - An exclusive **queue** with a random alphanumeric name (like `seneca.res.x42jK0l`).
 
 > Clients _do not_ declare the queue of their listener counterpart. So, if the message does not reach its destination and is discarded, the `seneca` instance will fail with a `TIMEOUT` error on the client side.
@@ -91,7 +91,7 @@ The following object describes the available options for this transport. These a
   "amqp": {
     "type": "amqp",
     "url": "amqp://localhost",
-    "exchange": {
+    "topics": {
       "type": "topic",
       "name": "seneca.topic",
       "options": {
@@ -185,13 +185,11 @@ var opts = {
 require('seneca')()
   .use('seneca-servicebus-transport')
   .client({
-    type: 'amqp',
+    type: 'servicebus',
     url: 'amqp://guest:guest@rabbitmq.host:5672/seneca?locale=es_AR',
     socketOptions: opts
   });
 ```
-
-> Snippet above is based on [amqplib/examples/ssl.js][5]
 
 ## Run the examples
 
@@ -200,23 +198,21 @@ There are simple examples under the `/examples` directory. To run them, just exe
 ```sh
 # Start listener.js
 cd examples
-AMQP_URL='amqp://guest:guest@dev.rabbitmq.com:5672' node listener.js
+SERVICEBUS_CONNECTION_STRING='Endpoint=sb://lorem.servicebus.windows.net/;SharedAccessKeyName=******;SharedAccessKey=***' node listener.js
 2016-01-19T19:43:41.883Z xsgjohldv9st/1453232621872/26290/- INFO	hello	Seneca/1.0.0/xsgjohldv9st/1453232621872/26290/-
-2016-01-19T19:43:42.272Z xsgjohldv9st/1453232621872/26290/- INFO	listen	{type:amqp,pin:role:create}
-2016-01-19T19:43:45.114Z xsgjohldv9st/1453232621872/26290/- INFO	plugin	amqp-transport	listen	open	{type:amqp,url:amqp://guest:guest@dev.rabbitmq.com:5672,exchange:{name:seneca.direct,options:{durable:true,auto	{did:(4eq8t),fixedargs:{},context:{module:{id:/home/nfantone/dev/js/seneca-servicebus-transport/node_modules/seneca/l...
+2016-01-19T19:43:42.272Z xsgjohldv9st/1453232621872/26290/- INFO	listen	{type:servicebus,pin:role:create}
+2016-01-19T19:43:45.114Z xsgjohldv9st/1453232621872/26290/- INFO	plugin	servicebus-transport	listen	open	{type:servicebus,url:amqp://guest:guest@dev.rabbitmq.com:5672,exchange:{name:seneca.direct,options:{durable:true,auto	{did:(4eq8t),fixedargs:{},context:{module:{id:/home/nfantone/dev/js/seneca-servicebus-transport/node_modules/seneca/l...
 
 # Start client.js
 cd examples
 AMQP_URL='amqp://guest:guest@dev.rabbitmq.com:5672' node client.js
 2016-01-19T19:45:27.797Z kozrmji8xksw/1453232727786/26313/- INFO	hello	Seneca/1.0.0/kozrmji8xksw/1453232727786/26313/-
-2016-01-19T19:45:28.162Z kozrmji8xksw/1453232727786/26313/- INFO	client	{type:amqp,pin:role:create}
+2016-01-19T19:45:28.162Z kozrmji8xksw/1453232727786/26313/- INFO	client	{type:servicebus,pin:role:create}
 null { pid: 26290, id: 46 }
 null { pid: 26290, id: 36 }
 null { pid: 26290, id: 73 }
 # ...
 ```
-
-> If you don't export the env variable `AMQP_URL` the default value of `amqp://localhost` will be used.
 
 ## Roadmap
 - Mocha unit tests.
@@ -232,8 +228,3 @@ Any help/contribution is appreciated!
 
 [1]: https://senecajs.org/
 [2]: https://azure.microsoft.com/en-us/services/service-bus/
-[3]: https://github.com/squaremo/amqp.node
-[4]: http://www.squaremobius.net/amqp.node/channel_api.html#connect
-[5]: https://github.com/squaremo/amqp.node/blob/b74a7ca6acbfcd0fb10127d4770b4f825da57745/examples/ssl.js
-[6]: https://www.rabbitmq.com/semantics.html
-[7]: https://www.rabbitmq.com/tutorials/tutorial-six-javascript.html

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
 var client = require('seneca')()
   .use('..')
@@ -8,19 +8,19 @@ var client = require('seneca')()
     type: 'amqp',
     pin: ['action:get_time', 'level:*', 'proc:status'],
     url: process.env.AMQP_URL
-  });
+  })
 
-setInterval(function() {
+setInterval(function () {
   client.act('action:get_time', {
     id: Math.floor(Math.random() * 91) + 10
-  }, console.log);
+  }, console.log)
 
   client.act('level:log', {
     id: Math.floor(Math.random() * 91) + 10,
     text: '[level:log] Print out this random number: ' + 100 * Math.random()
-  }, console.log);
+  }, console.log)
 
   client.act('proc:status', {
     id: Math.floor(Math.random() * 91) + 10
-  }, console.log);
-}, 500);
+  }, console.log)
+}, 500)
