@@ -1,6 +1,7 @@
 {
   "servicebus": {
     "type": "topic",
+    "topics": {},
     "queues": {
       "action": {
         "prefix": "seneca",

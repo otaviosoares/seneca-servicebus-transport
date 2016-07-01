@@ -5,9 +5,9 @@
 var client = require('seneca')()
   .use('..')
   .client({
-    type: 'amqp',
+    type: 'servicebus',
     pin: 'role:create',
-    url: process.env.AMQP_URL
+    connection_string: process.env.AZURE_CONNECTION_STRING || 'Endpoint=sb://artyou-events.servicebus.windows.net;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=60z+8mgjS8NciLSvjgiTbYPjT5K59UTFpcNoT48MGMU='
   })
 
 setInterval(function () {

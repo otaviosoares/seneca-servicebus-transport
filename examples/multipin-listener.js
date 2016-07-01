@@ -26,8 +26,7 @@ require('seneca')()
     })
   })
   .listen({
-    type: 'amqp',
-    pin: ['action:get_time', 'level:*', 'proc:status'],
-    name: 'seneca.multi-task.queue',
-    url: process.env.AMQP_URL
+    type: 'servicebus',
+    pin: ['action:get_time', 'level:log', 'proc:status'],
+    connection_string: process.env.AZURE_CONNECTION_STRING || 'Endpoint=sb://artyou-events.servicebus.windows.net;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=60z+8mgjS8NciLSvjgiTbYPjT5K59UTFpcNoT48MGMU='
   })
