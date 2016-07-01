@@ -13,5 +13,5 @@ require('seneca')()
   .listen({
     type: 'servicebus',
     pin: 'role:create',
-    connection_string: process.env.AZURE_CONNECTION_STRING || 'Endpoint=sb://artyou-events.servicebus.windows.net;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=60z+8mgjS8NciLSvjgiTbYPjT5K59UTFpcNoT48MGMU='
+    connection_string: process.env.AZURE_CONNECTION_STRING // || 'Endpoint=sb://YOURNAMESPACE.servicebus.windows.net;SharedAccessKeyName=***;SharedAccessKey=***
   })
