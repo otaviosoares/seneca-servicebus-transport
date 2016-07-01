@@ -28,28 +28,19 @@ require('seneca')()
     });
   })
   .listen({
-    name: 'create_act.queue', // This is optional
     type: 'servicebus',
-    pin: 'role:create'
+    pin: 'role:create',
+    connection_string: '****************'
   });
 ```
 
 #### How it works
-A listener _always_ creates one _and only one_ queue. The queue name can be provided via the `name` parameter, but it will be auto-generated from the `pin` (or `pins`) if not.
-
-> Be careful with name clashing when specifying a `name` for a listener. Having more than one queue with the same name declared on the AMQP broker will probably behave unexpectedly. It is recommended that you leave the name generation to the plugin in order to avoid problems, unless you know what you are doing.
+A listener creates a topic and and a subscription for each pattern.
 
 In the example above, the following things are declared:
 
-- A **topic** exchange named `seneca.topic`.
-- A **queue** named `seneca.create_act`.
-- A **binding** between the queue and the exchange using the _routing key_ `role.create` (named after the pin).
-
-> Queue names are prefixed with a configurable word (`seneca.`, by default). It can be disabled or modified during plugin declaration (read below).
-
-If your intention is to **create multiple queues**, just declare multiple listeners. Each queue will be bound to an exchange (`seneca.topic`, by default) using routing keys derived from the `pin` (or `pins`).
-
-If your intention is to **declare multiple consumers** on a single queue, run multiple listeners with the same set of `pins`. Or just spawn many instances of a single microservice.
+- A **topic** named `role.create`.
+- A **subscription** to `role.create`
 
 ### Client
 
@@ -57,8 +48,9 @@ If your intention is to **declare multiple consumers** on a single queue, run mu
 var client = require('seneca')()
   .use('seneca-servicebus-transport')
   .client({
-    type: 'amqp',
-    pin: 'role:create'
+    type: 'servicebus',
+    pin: 'role:create',
+    connection_string: '****************'
   });
 
 setInterval(function() {
@@ -78,7 +70,6 @@ As you can see, pins play an important role on routing messages on the broker, s
 
 In the example, the following things are declared:
 
-- A **topic** named `role.create`.
 - An exclusive **queue** with a random alphanumeric name (like `seneca.res.x42jK0l`).
 
 > Clients _do not_ declare the queue of their listener counterpart. So, if the message does not reach its destination and is discarded, the `seneca` instance will fail with a `TIMEOUT` error on the client side.
@@ -88,17 +79,9 @@ The following object describes the available options for this transport. These a
 
 ```json
 {
-  "amqp": {
-    "type": "amqp",
-    "url": "amqp://localhost",
-    "topics": {
-      "type": "topic",
-      "name": "seneca.topic",
-      "options": {
-        "durable": true,
-        "autoDelete": false
-      }
-    },
+  "servicebus": {
+    "type": "topic",
+    "topics": {},
     "queues": {
       "action": {
         "prefix": "seneca",
@@ -120,7 +103,7 @@ The following object describes the available options for this transport. These a
 }
 ```
 
-To override this settings, pass them to the plugin's `.use` declaration:
+<!-- To override this settings, pass them to the plugin's `.use` declaration:
 
 ```javascript
 require('seneca')()
@@ -132,64 +115,8 @@ require('seneca')()
       }
     }
   });
-```
+``` -->
 
-### Transport options
-AMQP related options may be indicated either by [the connection URI](https://www.rabbitmq.com/uri-spec.html) or by passing additional parameters to the `seneca#client()` or `seneca#listen()` functions.
-
-This,
-
-```javascript
-require('seneca')()
-  .use('seneca-servicebus-transport')
-  .client({
-    type: 'amqp',
-    url: 'amqp://guest:guest@rabbitmq.host:5672/seneca?locale=es_AR'
-  });
-```
-
-will result in the same connection URI as:
-
-```javascript
-require('seneca')()
-  .use('seneca-servicebus-transport')
-  .client({
-    type: 'amqp',
-    hostname: 'rabbitmq.host',
-    port: 5672,
-    vhost: 'seneca',
-    locale: 'es_AR',
-    username: 'guest',
-    password: 'guest'
-  });
-```
-
-### Socket options
-Additionally, you may pass in options to the `amqp.connect` method of [amqplib][3] as documented in [its API reference][4], using the `socketOptions` parameter.
-
-```javascript
-// Example of using a TLS/SSL connection. Note that the server must be
-// configured to accept SSL connections; see http://www.rabbitmq.com/ssl.html.
-
-var fs = require('fs');
-
-var opts = {
-  cert: fs.readFileSync('../etc/client/cert.pem'),
-  key: fs.readFileSync('../etc/client/key.pem'),
-  // cert and key or
-  // pfx: fs.readFileSync('../etc/client/keycert.p12'),
-  passphrase: 'MySecretPassword',
-  ca: [fs.readFileSync('../etc/testca/cacert.pem')]
-};
-
-require('seneca')()
-  .use('seneca-servicebus-transport')
-  .client({
-    type: 'servicebus',
-    url: 'amqp://guest:guest@rabbitmq.host:5672/seneca?locale=es_AR',
-    socketOptions: opts
-  });
-```
 
 ## Run the examples
 
@@ -199,27 +126,27 @@ There are simple examples under the `/examples` directory. To run them, just exe
 # Start listener.js
 cd examples
 SERVICEBUS_CONNECTION_STRING='Endpoint=sb://lorem.servicebus.windows.net/;SharedAccessKeyName=******;SharedAccessKey=***' node listener.js
-2016-01-19T19:43:41.883Z xsgjohldv9st/1453232621872/26290/- INFO	hello	Seneca/1.0.0/xsgjohldv9st/1453232621872/26290/-
-2016-01-19T19:43:42.272Z xsgjohldv9st/1453232621872/26290/- INFO	listen	{type:servicebus,pin:role:create}
-2016-01-19T19:43:45.114Z xsgjohldv9st/1453232621872/26290/- INFO	plugin	servicebus-transport	listen	open	{type:servicebus,url:amqp://guest:guest@dev.rabbitmq.com:5672,exchange:{name:seneca.direct,options:{durable:true,auto	{did:(4eq8t),fixedargs:{},context:{module:{id:/home/nfantone/dev/js/seneca-servicebus-transport/node_modules/seneca/l...
+2016-07-01T02:48:47.164Z wo1nwx8oq3xp/1467341327145/21846/- INFO  hello Seneca/2.1.0/wo1nwx8oq3xp/1467341327145/21846/- 
+2016-07-01T02:48:47.957Z wo1nwx8oq3xp/1467341327145/21846/- INFO  listen  {type:servicebus,pin:role:create,connection_string:Endpoint=sb://------.servicebus.windows.net;SharedAcc
 
 # Start client.js
 cd examples
-AMQP_URL='amqp://guest:guest@dev.rabbitmq.com:5672' node client.js
-2016-01-19T19:45:27.797Z kozrmji8xksw/1453232727786/26313/- INFO	hello	Seneca/1.0.0/kozrmji8xksw/1453232727786/26313/-
-2016-01-19T19:45:28.162Z kozrmji8xksw/1453232727786/26313/- INFO	client	{type:servicebus,pin:role:create}
-null { pid: 26290, id: 46 }
-null { pid: 26290, id: 36 }
-null { pid: 26290, id: 73 }
-# ...
+SERVICEBUS_CONNECTION_STRING='Endpoint=sb://lorem.servicebus.windows.net/;SharedAccessKeyName=******;SharedAccessKey=***' node listener.js
+2016-07-01T02:50:40.230Z ul9sgk41i253/1467341440211/21948/- INFO  hello Seneca/2.1.0/ul9sgk41i253/1467341440211/21948/- 
+2016-07-01T02:50:41.020Z ul9sgk41i253/1467341440211/21948/- INFO  client  {type:servicebus,pin:role:create,connection_string:Endpoint=sb://------.servicebus.windows.net;SharedAcc 
+null { pid: 21846, id: 42 } { id: 'mgpk8ggtnh01/3oax9b5p695w',
+  accept: 'wo1nwx8oq3xp/1467341327145/21846/-',
+  track: [ 'ul9sgk41i253/1467341440211/21948/-' ],
+  time: 
+   { client_sent: 1467341443033,
+     listen_recv: 1467341443174,
+     listen_sent: 1467341443179,
+     client_recv: 1467341443353 } }
+null { pid: 21846, id: 83 } { id: 'cw258tsdm6t
 ```
 
-## Roadmap
-- Mocha unit tests.
-- Functional tests.
-- Setup Travis CI.
-- Support for message TTL and dead-lettering.
-- Better support for work queues.
+## Known issues
+- Not possible to declare pins with wildcards
 
 ## License
 MIT
