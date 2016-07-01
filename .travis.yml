@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - '4'
-  - '5'
-  - '6'
+- '4'
+- '5'
+- '6'
 sudo: false
 branches:
   only:
@@ -13,12 +13,12 @@ notifications:
   - otaviokk@gmail.com
 script: npm run validate
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: npm
   email: otaviokk@gmail.com
   api_key:
-    secure: XpyWFiL/HBU/Kgce5x6pl8RqtoBNHG7h7sANk4LhhsaLJd8P4+rSP3Fdr1S/tY4uIPVVuO2/1UiQsSdmjYdR04tk4BPXaLH2ZknREF3V7k30ESS52IUKxEsHEVR37SE2NiOqutYDvI4dsO8ANOh/b+5CaZPEvchZRWvaydlFUsYsQwZICV7tKIEwU0E+pLboG0Y08UGaqG1j5KH6pp+5BL4G3rv04f0IcA2GtdjSDKcVjZE1U/MvQCAFOraXDJQq906n83LRM9Tf9Yr7oZlR9ivNzP1Sp8kOJh/L4IC/jkczfwGgA6NnXyt0nfDxVaKyevyl4A/ttYFbuLJ5p2qSxyd3KAfvWxgMzypFV5EaWvObjWcZbaCoR/GNz8J4ATgQ9LfMD/dgtHrpE8WCCb2XkCXU2rkmaIxPUyAHPVL3q20GXi/K2yl725vPwJLr37vHYfbS/7tkqNZdc7DIPCtMLHyZiMrTlH4HIvPYcFpFagKaLmVKrB49qO/w/nk0sdh2p3dLCUxd5PffMX9wygTN9YbMHYMDem3QaG/dF1WjgtSEq+EdC1c7mwGorDc+3SL9kthnlwyu/9rHsdz3pxc3tqmwZOK7/A/GQMRUxv3vSNln7saRV3Z/wcdWHVU/3gcJkA03lhEP3hXeEiRMLAQSs7XiFk7IgqYQkKkpao9a/yw=
+    secure: PNd0fmRE9v2qfMauQGHy94kDWXUUmFzztlfIhohWKuUy3IAgnM2+d0+CiwQ0J6M1VLQw0p4dUeA9XLU3YAwBEVji03VNzCgAS9IeKUEwirjiyqdKturr0YOKyAb1MW0cFULXCMZbjHuExblMJXf4v6k7W5M67xaW1H0jshkw1HtRUbNuZU5v91OXOlDKIbTLofFM2cbU/uPoryGSS8dV58E622G7PWqjdG1+GmiLmNl/AbrWqfKRzqwSZyDFzHVW6yY6utn5bIzS7sjvE/8cEoLUixrLqiXVJfSytpV5Bd1bKkrM41ZQCKLaqBXTyIQtjtWXOIAvldajfJleharHZcI6QwRzYek1lid4TgJez+AyPy6EjmwrAOXhjvxJ5rjjI+W6gSh2MKr/uZW2jJa6RwfgxH5bvCNoObok6Ueb68rTgmOpWj5Ze4TxZV7ua0XHYyn6tbFACeexEqtXEnH5T99aicw4Lzxm+PFSwQLI5xPwDU0a7fRA8JeevmFcxNHFO/2OMxFtqkeI745mnWEGJXAQlXCM+vrcyAo5uaFs17ufff8cUPXW9QXe6Y0W07G56dnNJWuGDkdbOO3l98NNgVuSkYwR+KvzZNyZPFUSFCn8caIZK+qhI5MN2Xytfp64PMhoevoLi1WHm1QdlkyTU0kUMTsronhZ6A0IqxZmJZ8=
   on:
     tags: true
     repo: otaviosoares/seneca-servicebus-transport

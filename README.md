@@ -3,7 +3,7 @@
 > A [Seneca.js][1] transport plugin
 
 # seneca-servicebus-transport
-<!-- [![Build Status](https://travis-ci.org/otaviosoares/seneca-servicebus-transport.svg?branch=develop)](https://travis-ci.org/otaviosoares/seneca-servicebus-transport) [![codecov.io](https://codecov.io/github/otaviosoares/seneca-servicebus-transport/coverage.svg?branch=develop)](https://codecov.io/github/otaviosoares/seneca-servicebus-transport?branch=develop) --> [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/otaviosoares/seneca-servicebus-transport/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/otaviosoares/seneca-servicebus-transport.svg?branch=master)](https://travis-ci.org/otaviosoares/seneca-servicebus-transport) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/otaviosoares/seneca-servicebus-transport/blob/master/LICENSE)
 
 This plugin allows seneca listeners and clients to communicate over [Azure Service Bus][2].
 
