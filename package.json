@@ -1,6 +1,6 @@
 {
   "name": "seneca-servicebus-transport",
-  "version": "0.1.0-dev",
+  "version": "0.1.1-dev",
   "description": "Azure Servicebus transport plugin for seneca.js",
   "main": "index.js",
   "files": [
@@ -22,7 +22,6 @@
     "servicebus",
     "transport",
     "azure",
-    "zmq",
     "activemq",
     "microservice",
     "rpc"
