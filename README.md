@@ -5,7 +5,9 @@
 # seneca-servicebus-transport
 [![Build Status](https://travis-ci.org/otaviosoares/seneca-servicebus-transport.svg?branch=master)](https://travis-ci.org/otaviosoares/seneca-servicebus-transport) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/otaviosoares/seneca-servicebus-transport/blob/master/LICENSE)
 
-This plugin allows seneca listeners and clients to communicate over [Azure Service Bus][2].
+This plugin allows seneca listeners and clients to communicate over [Azure Service Bus][2] using AMQP 1.0.
+
+*This project is based on [Seneca AMQP Transport][3].*
 
 ## Install
 
@@ -155,3 +157,4 @@ Any help/contribution is appreciated!
 
 [1]: https://senecajs.org/
 [2]: https://azure.microsoft.com/en-us/services/service-bus/
+[3]: https://github.com/seneca-contrib/seneca-amqp-transport/
