@@ -3,9 +3,10 @@
 > A [Seneca.js][1] transport plugin
 
 # seneca-servicebus-transport
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Build Status](https://travis-ci.org/otaviosoares/seneca-servicebus-transport.svg?branch=master)](https://travis-ci.org/otaviosoares/seneca-servicebus-transport) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/otaviosoares/seneca-servicebus-transport/blob/master/LICENSE)
 
-This plugin allows seneca listeners and clients to communicate over [Azure Service Bus][2] using AMQP 1.0.
+This plugin allows seneca listeners and clients to communicate over [Oasis AMQP 1.0][4] using [Azure Service Bus][2].
 
 *This project is based on [Seneca AMQP Transport][3].*
 
@@ -146,6 +147,9 @@ null { pid: 21846, id: 42 } { id: 'mgpk8ggtnh01/3oax9b5p695w',
      client_recv: 1467341443353 } }
 null { pid: 21846, id: 83 } { id: 'cw258tsdm6t
 ```
+## Roadmap
+- Add tests
+- Enable queue based communication
 
 ## Known issues
 - Not possible to declare pins with wildcards
@@ -158,3 +162,4 @@ Any help/contribution is appreciated!
 [1]: https://senecajs.org/
 [2]: https://azure.microsoft.com/en-us/services/service-bus/
 [3]: https://github.com/seneca-contrib/seneca-amqp-transport/
+[4]: http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf
