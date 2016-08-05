@@ -37,6 +37,7 @@
   "homepage": "https://github.com/otaviosoares/seneca-servicebus-transport",
   "dependencies": {
     "amqp10": "^3.2.0",
+    "async": "^2.0.1",
     "azure": "^0.10.6",
     "bluebird": "^3.4.0",
     "jsonic": "^0.2.2",
