@@ -42,7 +42,7 @@
     "bluebird": "^3.5.0",
     "jsonic": "^0.2.2",
     "lodash": "^4.17.4",
-    "seneca": "^2.1.0",
+    "seneca": "^3.4.2",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
