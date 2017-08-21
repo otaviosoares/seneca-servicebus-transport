@@ -1,6 +1,6 @@
 {
   "name": "seneca-servicebus-transport",
-  "version": "0.2.1-dev",
+  "version": "0.2.2-dev",
   "description": "Azure Servicebus transport plugin for seneca.js",
   "main": "index.js",
   "files": [
