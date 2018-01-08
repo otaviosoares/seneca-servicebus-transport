@@ -263,7 +263,7 @@ azure-arm-insights@0.10.0:
   resolved "https://registry.yarnpkg.com/azure-arm-insights/-/azure-arm-insights-0.10.0.tgz#c11f50a160f591cb0160fa47fc536e4d3c5facfc"
   dependencies:
     azure-common "0.9.12"
-    moment "2.6.0"
+    moment "2.11.2"
 
 azure-arm-keyvault@0.10.0:
   version "0.10.0"
@@ -295,7 +295,7 @@ azure-arm-website@0.10.0:
   resolved "https://registry.yarnpkg.com/azure-arm-website/-/azure-arm-website-0.10.0.tgz#610400ecb801bff16b7e2d7c1c6d1fe99c4f9ec9"
   dependencies:
     azure-common "0.9.12"
-    moment "2.6.0"
+    moment "2.11.2"
     underscore "1.4.x"
 
 azure-asm-compute@0.10.0:
@@ -373,7 +373,7 @@ azure-asm-website@0.10.0:
   resolved "https://registry.yarnpkg.com/azure-asm-website/-/azure-asm-website-0.10.0.tgz#7a31cafbf79768c03c97c66370fa846fb9110bda"
   dependencies:
     azure-common "0.9.12"
-    moment "2.6.0"
+    moment "2.11.2"
     underscore "1.4.x"
 
 azure-common@0.9.10:
@@ -425,7 +425,7 @@ azure-monitoring@0.10.0:
   resolved "https://registry.yarnpkg.com/azure-monitoring/-/azure-monitoring-0.10.0.tgz#cecaf5e5d91133c09598e0d4252352ccc2714788"
   dependencies:
     azure-common "0.9.12"
-    moment "2.6.0"
+    moment "2.11.2"
     underscore "1.4.x"
 
 azure-sb@0.10.0:
@@ -442,7 +442,7 @@ azure-scheduler@0.10.0:
   resolved "https://registry.yarnpkg.com/azure-scheduler/-/azure-scheduler-0.10.0.tgz#4b5e809d66e6e85205e5ded9dd4779b29a36aebc"
   dependencies:
     azure-common "0.9.12"
-    moment "2.6.0"
+    moment "2.11.2"
 
 azure-storage@0.3.3:
   version "0.3.3"
@@ -2765,9 +2765,9 @@ mocha@^2.0.1:
     supports-color "1.2.0"
     to-iso-string "0.0.2"
 
-moment@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.6.0.tgz#0765b72b841dd213fa91914c0f6765122719f061"
+moment@2.11.2:
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.11.2.tgz#0765b72b841dd213fa91914c0f6765122719f061"
 
 mpns@~2.0.0:
   version "2.0.1"
