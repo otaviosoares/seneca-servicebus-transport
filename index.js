@@ -8,10 +8,14 @@ const hooks = require('./lib/hooks')
 const PLUGIN_NAME = 'servicebus-transport'
 const TRANSPORT_TYPE = 'servicebus'
 
+const debug = require('debug')('seneca-servicebus-transport')
+
 module.exports = function (opts) {
   var seneca = this
   var so = seneca.options()
   var options = seneca.util.deepextend(defaults, so.transport, opts)
+
+  debug('Initializing plugin with options %%O', options)
 
   var listener = hooks.listenerHook(seneca)
   var client = hooks.clientHook(seneca)
