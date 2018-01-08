@@ -15,7 +15,7 @@ module.exports = function (opts) {
   var so = seneca.options()
   var options = seneca.util.deepextend(defaults, so.transport, opts)
 
-  debug('Initializing plugin with options %%O', options)
+  debug('Initializing plugin with options %%O', options.servicebus)
 
   var listener = hooks.listenerHook(seneca)
   var client = hooks.clientHook(seneca)
