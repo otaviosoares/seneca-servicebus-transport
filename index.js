@@ -19,12 +19,12 @@ module.exports = function (opts) {
     role: 'transport',
     hook: 'listen',
     type: TRANSPORT_TYPE
-  }, listener.hook(options))
+  }, listener.hook(options, 'listen'))
   seneca.add({
     role: 'transport',
     hook: 'client',
     type: TRANSPORT_TYPE
-  }, client.hook(options))
+  }, client.hook(options, 'client'))
 
   return {
     name: PLUGIN_NAME
