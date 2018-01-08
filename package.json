@@ -1,6 +1,6 @@
 {
   "name": "seneca-servicebus-transport",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Azure Servicebus transport plugin for seneca.js",
   "main": "index.js",
   "files": [
@@ -37,6 +37,7 @@
   "homepage": "https://github.com/otaviosoares/seneca-servicebus-transport",
   "dependencies": {
     "amqp10": "^3.5.3",
+    "amqp10-link-cache": "^1.2.2",
     "async": "^2.5.0",
     "azure": "^0.10.6",
     "bluebird": "^3.5.0",

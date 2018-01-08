@@ -18,6 +18,10 @@
           "exclusive": true
         }
       }
+    },
+    "cache": {
+      "enabled": false,
+      "ttl": 5000
     }
   }
 }

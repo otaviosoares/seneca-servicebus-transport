@@ -49,6 +49,13 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+amqp10-link-cache@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/amqp10-link-cache/-/amqp10-link-cache-1.2.2.tgz#d04fea0c05c707204bb3e241e9c2f1344c4b3a06"
+  dependencies:
+    bluebird "^3.3.4"
+    object-hash "^1.1.2"
+
 amqp10@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/amqp10/-/amqp10-3.5.3.tgz#e1ec3ecb036131e4791fe63ad18acec48f60646b"
@@ -533,7 +540,7 @@ bl@~0.9.0:
   dependencies:
     readable-stream "~1.0.26"
 
-bluebird@^3.4.6, bluebird@^3.5.0:
+bluebird@^3.3.4, bluebird@^3.4.6, bluebird@^3.5.0:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -2893,6 +2900,10 @@ object-copy@^0.1.0:
     copy-descriptor "^0.1.0"
     define-property "^0.2.5"
     kind-of "^3.0.3"
+
+object-hash@^1.1.2:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.2.0.tgz#e96af0e96981996a1d47f88ead8f74f1ebc4422b"
 
 object-visit@^1.0.0:
   version "1.0.1"
