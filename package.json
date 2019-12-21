@@ -1,6 +1,6 @@
 {
   "name": "seneca-servicebus-transport",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Azure Servicebus transport plugin for seneca.js",
   "main": "index.js",
   "files": [
@@ -37,21 +37,21 @@
     "amqp10-link-cache": "^1.2.2",
     "async": "^3.1.0",
     "azure": "^0.10.6",
-    "bluebird": "^3.5.5",
-    "debug": "^3.2.6",
+    "bluebird": "^3.7.2",
+    "debug": "^4.1.1",
     "jsonic": "^0.3.1",
     "lodash": "^4.17.15",
-    "seneca": "^3.4.2",
-    "shortid": "^2.2.14",
-    "uuid": "^3.3.2"
+    "seneca": "^3.13.3",
+    "shortid": "^2.2.15",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.1",
     "pre-commit": "^1.2.2"
   }
 }
